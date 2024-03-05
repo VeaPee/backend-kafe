@@ -11,21 +11,21 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 
 const app = express();
-const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
+// const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
 
-const secretmanagerClient = new SecretManagerServiceClient();
+// const secretmanagerClient = new SecretManagerServiceClient();
 
-const callAccessSecretVersion = async () => {
-  // Construct request
-  const request = {
-    name: 'projects/720009966636/secrets/MONGO_URI/versions/latest',
-  };
+// const callAccessSecretVersion = async () => {
+//   // Construct request
+//   const request = {
+//     name: 'projects/720009966636/secrets/MONGO_URI/versions/latest',
+//   };
 
   // Run request
-  const [response] = await secretmanagerClient.accessSecretVersion(request);
-  const secretValue = response.payload.data.toString();
-  return secretValue;
-}
+//   const [response] = await secretmanagerClient.accessSecretVersion(request);
+//   const secretValue = response.payload.data.toString();
+//   return secretValue;
+// }
 
 // Middlewares
 app.use(express.json());
@@ -55,14 +55,15 @@ app.get("/", (req, res) => {
 app.use(errorHandler);
 // Connect to DB and start server
 const PORT = process.env.PORT || 8080;
+
 // mongoose
 //   .connect(process.env.MONGO_URI)
-  // .then(() => {
-  //   app.listen(PORT, () => {
-  //     console.log(`Server Running on port ${PORT}`);
-  //   });
-  // })
-  // .catch((err) => console.log(err));
+//   .then(() => {
+//     app.listen(PORT, () => {
+//       console.log(`Server Running on port ${PORT}`);
+//     });
+//   })
+//   .catch((err) => console.log(err));
 
 const connectToDatabase = async () => {
   try {

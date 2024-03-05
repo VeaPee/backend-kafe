@@ -1,0 +1,15 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: DeliveryPipeline
+metadata:
+  name: cicd-pipeline-kafe-backend
+  labels:
+    app: cicd-pipeline-kafe-backend
+description: cicd delivery pipeline
+serialPipeline:
+  stages:
+  - targetId: staging
+    profiles:
+    - staging
+  - targetId: prod
+    profiles:
+    - prod

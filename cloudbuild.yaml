@@ -15,6 +15,6 @@
     - '--image'
     - 'gcr.io/$PROJECT_ID/backend-kafe:$COMMIT_SHA'
     - '--region'
-    - 'REGION'
+    - 'asia-southeast2'
   images:
   - 'gcr.io/$PROJECT_ID/backend-kafe:$COMMIT_SHA'

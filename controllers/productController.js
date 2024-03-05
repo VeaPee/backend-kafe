@@ -4,9 +4,9 @@ const { fileSizeFormatter } = require("../utils/fileUpload");
 const uploadFile = require("../utils/fileUpload");
 const { Storage } = require("@google-cloud/storage");
 const storage = new Storage({
-  projectId: "tugas-akhir-10683",
+  projectId: "tabebuya-cafe",
 });
-const bucket = storage.bucket("tabebuya-cafe");
+const bucket = storage.bucket("kafe-tabebuya");
 
 // Create Prouct
 const createProduct = asyncHandler(async (req, res) => {
@@ -19,7 +19,7 @@ const createProduct = asyncHandler(async (req, res) => {
   }
 
   // Handle Image upload
-  let fileData = "https://storage.googleapis.com/tabebuya-cafe/Placeholder.png";
+  let fileData = "https://storage.googleapis.com/kafe-tabebuya/Placeholder.png";
 
   if (req.file) {
     // Save image to Google Cloud Storage

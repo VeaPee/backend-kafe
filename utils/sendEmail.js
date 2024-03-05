@@ -7,7 +7,7 @@ const secretmanagerClient = new SecretManagerServiceClient();
 const callAccessSecretVersionHost = async () => {
   // Construct request
   const request = {
-    name: 'projects/829904945155/secrets/EMAIL_HOST/versions/latest'
+    name: 'projects/720009966636/secrets/EMAIL_HOST/versions/latest'
   };
   // Run request
   const [responseHost] = await secretmanagerClient.accessSecretVersion(request);
@@ -18,7 +18,7 @@ const callAccessSecretVersionHost = async () => {
 const callAccessSecretVersionUser = async () => {
   // Construct request
   const request = {
-    name: 'projects/829904945155/secrets/EMAIL_USER/versions/latest'
+    name: 'projects/720009966636/secrets/EMAIL_USER/versions/latest'
   };
   // Run request
   const [responseUser] = await secretmanagerClient.accessSecretVersion(request);
@@ -29,7 +29,7 @@ const callAccessSecretVersionUser = async () => {
 const callAccessSecretVersionPass = async () => {
   // Construct request
   const request = {
-    name: 'projects/829904945155/secrets/EMAIL_PASS/versions/latest'
+    name: 'projects/720009966636/secrets/EMAIL_PASS/versions/latest'
   };
   // Run request
   const [responsePass] = await secretmanagerClient.accessSecretVersion(request);

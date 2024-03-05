@@ -8,7 +8,7 @@ const secretmanagerClient = new SecretManagerServiceClient();
 const callAccessSecretVersion = async () => {
   // Construct request
   const request = {
-    name: 'projects/829904945155/secrets/EMAIL_USER/versions/latest'
+    name: 'projects/720009966636/secrets/EMAIL_USER/versions/latest'
   };
 
   // Run request

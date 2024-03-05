@@ -7,9 +7,9 @@ metadata:
 description: cicd delivery pipeline
 serialPipeline:
   stages:
-  - targetId: staging
+  - targetId: kafe-pipeline-staging
     profiles:
-    - staging
-  - targetId: prod
+    - kafe-pipeline-staging
+  - targetId: kafe-pipeline-prod
     profiles:
-    - prod
+    - kafe-pipeline-prod

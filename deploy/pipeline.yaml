@@ -1,9 +1,9 @@
 apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
-  name: cicd-pipeline-kafe-backend
+  name: kafe-pipeline
   labels:
-    app: cicd-pipeline-kafe-backend
+    app: kafe-pipeline
 description: cicd delivery pipeline
 serialPipeline:
   stages:

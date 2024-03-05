@@ -1,9 +1,9 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
- name: [SERVICE_NAME]
+ name: backend-kafe
 spec:
  template:
   spec:
    containers:
-   - image: [IMAGE_PATH]
+   - image: asia-southeast2-docker.pkg.dev/kafe-tabebuya/cloud-run-source-deploy/backend-kafe/backend-kafe:$COMMIT_SHA

@@ -18,7 +18,7 @@ const secretmanagerClient = new SecretManagerServiceClient();
 const callAccessSecretVersion = async () => {
   // Construct request
   const request = {
-    name: 'projects/829904945155/secrets/MONGO_URI/versions/latest',
+    name: 'projects/720009966636/secrets/MONGO_URI/versions/latest',
   };
 
   // Run request

@@ -1,0 +1,29 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: DeliveryPipeline
+metadata:
+  name: pipeline-backend
+description: main application pipeline
+serialPipeline:
+  stages:
+  - targetId: run-qsstaging
+    profiles: [staging]
+  - targetId: run-qsprod
+    profiles: [prod]
+---
+
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: run-qsstaging
+description: Cloud Run Staging service
+run:
+  location: projects/kafe-tabebuya/locations/asia-southeast2
+---
+
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: run-qsprod
+description: Cloud Run production service
+run:
+  location: projects/kafe-tabebuya/locations/asia-southeast2

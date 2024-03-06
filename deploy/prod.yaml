@@ -1,10 +1,10 @@
-apiVersion: deploy.cloud.google.com/v1
-kind: Target
+apiVersion: serving.knative.dev/v1
+kind: Service
 metadata:
-  name: kafe-pipeline-staging
-  annotations: {}
-  labels: {}
-description: kafe-pipeline-staging
+  name: prod
 requireApproval: true
-run:
-  location: projects/kafe-tabebuya/locations/asia-southeast2
+spec:
+  template:
+    spec:
+      containers:
+      - image: asia-southeast2-docker.pkg.dev/kafe-tabebuya/cloud-run-source-deploy/backend-kafe/backend-kafe:$COMMIT_SHA

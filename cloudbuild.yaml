@@ -11,7 +11,7 @@ steps:
   args: 
       [
       "deploy", "releases", "create", "release-$_RELEASE_TIMESTAMP",
-      "--delivery-pipeline", "cloud-run-pipeline",
+      "--delivery-pipeline", "pipeline-backend",
       "--region", "${_REGION}",
       "--images", "app=${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$BUILD_ID"
       ]

@@ -8,7 +8,7 @@ const sendEmail = require("../utils/sendEmail");
 
 // Generate Token
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+  return jwt.sign({ id }, process.env._JWT_SECRET, { expiresIn: "1d" });
 };
 
 // Register User
@@ -159,7 +159,7 @@ const loginStatus = asyncHandler(async (req, res) => {
     return res.json(false);
   }
   // Verify Token
-  const verified = jwt.verify(token, process.env.JWT_SECRET);
+  const verified = jwt.verify(token, process.env._JWT_SECRET);
   if (verified) {
     return res.json(true);
   }
@@ -255,7 +255,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
   }).save();
 
   // Construct Reset Url
-  const resetUrl = `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`;
+  const resetUrl = `${process.env._FRONTEND_URL}/resetpassword/${resetToken}`;
 
   // Reset Email
   const message = `
@@ -270,7 +270,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
     `;
   const subject = "Password Reset Request";
   const send_to = user.email;
-  const sent_from = process.env.EMAIL_USER;
+  const sent_from = process.env._EMAIL_USER;
 
   try {
     await sendEmail(subject, message, send_to, sent_from);

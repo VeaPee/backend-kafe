@@ -15,4 +15,4 @@ steps:
       "--region", "${_REGION}",
       "--images", "app=${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$BUILD_ID"
       ]
-entrypoint: gcloud
+  entrypoint: gcloud

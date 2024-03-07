@@ -7,11 +7,11 @@ steps:
         '--builder=gcr.io/buildpacks/builder',
         '--publish', '${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA']
   id: backend
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
   entrypoint: gcloud
   args: 
       [
-      "deploy", "releases", "create", "release-$_RELEASE_TIMESTAMP",
+      "deploy", "releases", "create",
       "--delivery-pipeline", "pipeline-backend",
       "--region", "${_REGION}",
       "--images", "app=${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA"

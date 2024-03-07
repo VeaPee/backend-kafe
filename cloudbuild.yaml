@@ -1,11 +1,5 @@
 substitutions:
   _REGION: asia-southeast2
-  _MONGO_URI: ${_MONGO_URI}
-  _NODE_ENV: ${_NODE_ENV}
-  _JWT_SECRET: ${_JWT_SECRET}
-  _EMAIL_HOST: ${_EMAIL_HOST}
-  _EMAIL_USER: ${_EMAIL_USER}
-  _EMAIL_PASS: ${_EMAIL_PASS}
 steps:
 - name: 'gcr.io/k8s-skaffold/pack'
   entrypoint: 'pack'
@@ -20,5 +14,7 @@ steps:
       "deploy", "releases", "create", "release-$SHORT_SHA",
       "--delivery-pipeline", "pipeline-backend",
       "--region", "${_REGION}",
-      "--images", "app=${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA"
+      "--images", "app=${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA",
+      "_MONGO_URI=${_MONGO_URI}","_NODE_ENV: ${_NODE_ENV}","_JWT_SECRET: ${_JWT_SECRET}",
+      "_EMAIL_HOST: ${_EMAIL_HOST}", "_EMAIL_USER: ${_EMAIL_USER}", "_EMAIL_PASS: ${_EMAIL_PASS}"
       ]

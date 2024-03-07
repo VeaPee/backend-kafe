@@ -1,18 +1,22 @@
-substitutions:
-  _REGION: asia-southeast2
-steps:
-- name: 'gcr.io/k8s-skaffold/pack'
-  entrypoint: 'pack'
-  args: ['build',
-        '--builder=gcr.io/buildpacks/builder',
-        '--publish', '${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA']
-  id: Build and package .backend app
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
-  entrypoint: gcloud
-  args: 
-      [
-      "deploy", "releases", "create", "release-$_RELEASE_TIMESTAMP",
-      "--delivery-pipeline", "pipeline-backend",
-      "--region", "${_REGION}",
-      "--images", "app=${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA"
-      ]
+  substitutions:
+    _REGION: asia-southeast2
+  steps:
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/kafe-tabebuya/cloud-run-source-deploy/backend-kafe/backend-kafe:$COMMIT_SHA', '.']
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'asia-southeast2-docker.pkg.dev/kafe-tabebuya/cloud-run-source-deploy/backend-kafe/backend-kafe:$COMMIT_SHA']
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+    - 'run'
+    - 'deploy'
+    - 'backend-kafe'
+    - '--image'
+    - 'asia-southeast2-docker.pkg.dev/kafe-tabebuya/cloud-run-source-deploy/backend-kafe/backend-kafe:$COMMIT_SHA'
+    - '--region'
+    - 'asia-southeast2'
+  images:
+  - 'asia-southeast2-docker.pkg.dev/kafe-tabebuya/cloud-run-source-deploy/backend-kafe/backend-kafe:$COMMIT_SHA'

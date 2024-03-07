@@ -6,4 +6,4 @@ spec:
   template:
     spec:
       containers:
-      - image: app
+      - image: asia-southeast2-docker.pkg.dev/kafe-tabebuya/cloud-run-source-deploy/backend-kafe/backend-kafe:$COMMIT_SHA

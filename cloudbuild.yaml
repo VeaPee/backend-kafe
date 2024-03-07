@@ -7,7 +7,7 @@ steps:
         '--builder=gcr.io/buildpacks/builder',
         '--publish', '${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA']
   id: backend
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
   entrypoint: gcloud
   args: 
       [

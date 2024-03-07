@@ -23,12 +23,12 @@ steps:
   entrypoint: /bin/bash
   args:
     - |-
-      echo "MONGO_URI=$(gcloud secrets versions access latest --secret=MONGO_URI | jq -r '.payload')" >> $GOOGLE_APPLICATION_CREDENTIALS
-      echo "MONGO_URI=$(gcloud secrets versions access latest --secret=JWT_SECRET | jq -r '.payload')" >> $GOOGLE_APPLICATION_CREDENTIALS
-      echo "MONGO_URI=$(gcloud secrets versions access latest --secret=EMAIL_HOST | jq -r '.payload')" >> $GOOGLE_APPLICATION_CREDENTIALS
-      echo "MONGO_URI=$(gcloud secrets versions access latest --secret=EMAIL_USER | jq -r '.payload')" >> $GOOGLE_APPLICATION_CREDENTIALS
-      echo "MONGO_URI=$(gcloud secrets versions access latest --secret=EMAIL_PASS | jq -r '.payload')" >> $GOOGLE_APPLICATION_CREDENTIALS
-      echo "NODE_ENV=${_NODE_ENV}" >> $GOOGLE_APPLICATION_CREDENTIALS
+      echo "MONGO_URI=$(gcloud secrets versions access latest --secret=MONGO_URI | jq -r '.payload')"
+      echo "JWT_SECRET=$(gcloud secrets versions access latest --secret=JWT_SECRET | jq -r '.payload')"
+      echo "EMAIL_HOST=$(gcloud secrets versions access latest --secret=EMAIL_HOST | jq -r '.payload')"
+      echo "EMAIL_USER=$(gcloud secrets versions access latest --secret=EMAIL_USER | jq -r '.payload')"
+      echo "EMAIL_PASS=$(gcloud secrets versions access latest --secret=EMAIL_PASS | jq -r '.payload')"
+      echo "NODE_ENV=$(gcloud secrets versions access latest --secret=NODE_ENV | jq -r '.payload')"
 
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
   entrypoint: gcloud

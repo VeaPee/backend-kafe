@@ -7,6 +7,16 @@ steps:
         '--builder=gcr.io/buildpacks/builder',
         '--publish', '${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA']
   id: backend
+- name: node:latest
+  entrypoint: npm
+  args: ["run", "create-env"]
+  env:
+  - 'MONGO_URI = ${_MONGO_URI}'
+  - 'NODE_ENV = ${_NODE_ENV}'
+  - 'JWT_SECRET = ${_JWT_SECRET}'
+  - 'EMAIL_HOST = ${_EMAIL_HOST}'
+  - 'EMAIL_USER = ${_EMAIL_USER}'
+  - 'EMAIL_PASS = ${_EMAIL_PASS}'
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
   entrypoint: gcloud
   args: 
@@ -16,10 +26,3 @@ steps:
       "--region", "${_REGION}",
       "--images", "app=${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA"
       ]
-env:
-  - 'MONGO_URI = ${_MONGO_URI}'
-  - 'NODE_ENV = ${_NODE_ENV}'
-  - 'JWT_SECRET = ${_JWT_SECRET}'
-  - 'EMAIL_HOST = ${_EMAIL_HOST}'
-  - 'EMAIL_USER = ${_EMAIL_USER}'
-  - 'EMAIL_PASS = ${_EMAIL_PASS}'

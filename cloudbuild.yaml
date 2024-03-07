@@ -1,12 +1,6 @@
 substitutions:
   _REGION: asia-southeast2
 steps:
-- name: 'gcr.io/k8s-skaffold/pack'
-  entrypoint: 'pack'
-  args: ['build',
-        '--builder=gcr.io/buildpacks/builder',
-        '--publish', '${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA']
-  id: backend
 - name: node:latest
   entrypoint: npm
   args: ["run", "create-env"]
@@ -17,6 +11,12 @@ steps:
   - 'EMAIL_HOST = ${_EMAIL_HOST}'
   - 'EMAIL_USER = ${_EMAIL_USER}'
   - 'EMAIL_PASS = ${_EMAIL_PASS}'
+- name: 'gcr.io/k8s-skaffold/pack'
+  entrypoint: 'pack'
+  args: ['build',
+        '--builder=gcr.io/buildpacks/builder',
+        '--publish', '${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA']
+  id: backend
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
   entrypoint: gcloud
   args: 

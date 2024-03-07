@@ -11,7 +11,7 @@ steps:
   entrypoint: gcloud
   args: 
       [
-      "deploy", "releases", "create", "$_RELEASE_TIMESTAMP",
+      "deploy", "releases", "create", "release-$BUILD_ID",
       "--delivery-pipeline", "pipeline-backend",
       "--region", "${_REGION}",
       "--images", "app=${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA"

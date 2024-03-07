@@ -7,7 +7,8 @@ steps:
         '--builder=gcr.io/buildpacks/builder',
         '--publish', '${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$BUILD_ID']
   id: Build and package .backend app
-- name: gcr.io/google.com/cloudsdktool/cloud-sdk
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
   args: 
       [
       "deploy", "releases", "create", "release-$_RELEASE_TIMESTAMP",
@@ -15,4 +16,3 @@ steps:
       "--region", "${_REGION}",
       "--images", "app=${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$BUILD_ID"
       ]
-  entrypoint: gcloud

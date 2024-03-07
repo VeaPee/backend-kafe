@@ -9,14 +9,32 @@ spec:
         - image: app
           env:
           - name: MONGO_URI
-            value: _MONGO_URI
+            valueFrom:
+              secretKeyRef:
+                key: latest
+                name: MONGO_URI
           - name: NODE_ENV
-            value: _NODE_ENV
+            valueFrom:
+              secretKeyRef:
+                key: latest
+                name: NODE_ENV
           - name: JWT_SECRET
-            value: _JWT_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: latest
+                name: JWT_SECRET
           - name: EMAIL_HOST
-            value: _EMAIL_HOST
+            valueFrom:
+              secretKeyRef:
+                key: latest
+                name: EMAIL_HOST
           - name: EMAIL_USER
-            value: _EMAIL_USER
+            valueFrom:
+              secretKeyRef:
+                key: latest
+                name: EMAIL_USER
           - name: EMAIL_PASS
-            value: _EMAIL_PASS
+            valueFrom:
+              secretKeyRef:
+                key: latest
+                name: EMAIL_PASS

@@ -7,6 +7,29 @@ steps:
         '--builder=gcr.io/buildpacks/builder',
         '--publish', '${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA']
   id: backend
+  # Retrieve secrets from Cloud Secret Manager or source code
+- name: 'gcr.io/google.com/cloud-sdk:slim'
+  entrypoint: gcloud
+  args:
+    - secrets versions access latest --secret=MONGO_URI
+    # Replace with your secret names and access permissions
+    - secrets versions access latest --secret=NODE_ENV
+    - secrets versions access latest --secret=JWT_SECRET
+    - secrets versions access latest --secret=EMAIL_HOST
+    - secrets versions access latest --secret=EMAIL_USER
+    - secrets versions access latest --secret=EMAIL_PASS
+  # Store extracted secrets and less sensitive variables (if applicable) securely
+- name: 'cloud-sdk:latest'
+  entrypoint: /bin/bash
+  args:
+    - |-
+      echo "MONGO_URI=$(gcloud secrets versions access latest --secret=MONGO_URI | jq -r '.payload')" >> $GOOGLE_APPLICATION_CREDENTIALS
+      echo "MONGO_URI=$(gcloud secrets versions access latest --secret=JWT_SECRET | jq -r '.payload')" >> $GOOGLE_APPLICATION_CREDENTIALS
+      echo "MONGO_URI=$(gcloud secrets versions access latest --secret=EMAIL_HOST | jq -r '.payload')" >> $GOOGLE_APPLICATION_CREDENTIALS
+      echo "MONGO_URI=$(gcloud secrets versions access latest --secret=EMAIL_USER | jq -r '.payload')" >> $GOOGLE_APPLICATION_CREDENTIALS
+      echo "MONGO_URI=$(gcloud secrets versions access latest --secret=EMAIL_PASS | jq -r '.payload')" >> $GOOGLE_APPLICATION_CREDENTIALS
+      echo "NODE_ENV=${_NODE_ENV}" >> $GOOGLE_APPLICATION_CREDENTIALS
+
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
   entrypoint: gcloud
   args: 
@@ -14,12 +37,6 @@ steps:
       "deploy", "releases", "create", "release-$SHORT_SHA",
       "--delivery-pipeline", "pipeline-backend",
       "--region", "${_REGION}",
-      "--images", "app=${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA"
+      "--images", "app=${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA",
+      "--secret-env-vars=MONGO_URI,JWT_SECRET,NODE_ENV,EMAIL_HOST,EMAIL_USER,EMAIL_PASS", # List all secret names
       ]
-  env:
-  - 'MONGO_URI = ${_MONGO_URI}'
-  - 'NODE_ENV = ${_NODE_ENV}'
-  - 'JWT_SECRET = ${_JWT_SECRET}'
-  - 'EMAIL_HOST = ${_EMAIL_HOST}'
-  - 'EMAIL_USER = ${_EMAIL_USER}'
-  - 'EMAIL_PASS = ${_EMAIL_PASS}'

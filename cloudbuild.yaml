@@ -16,3 +16,10 @@ steps:
       "--region", "${_REGION}",
       "--images", "app=${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA"
       ]
+  env:
+  - 'MONGO_URI: ${_MONGO_URI}'
+  - 'NODE_ENV: ${_NODE_ENV}'
+  - 'JWT_SECRET: ${_JWT_SECRET}'
+  - 'EMAIL_HOST: ${_EMAIL_HOST}'
+  - 'EMAIL_USER: ${_EMAIL_USER}'
+  - 'EMAIL_PASS: ${_EMAIL_PASS}'

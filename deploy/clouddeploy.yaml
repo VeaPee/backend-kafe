@@ -5,16 +5,16 @@ metadata:
 description: main application pipeline
 serialPipeline:
   stages:
-  - targetId: run-qsstaging
+  - targetId: run-staging
     profiles: [staging]
-  - targetId: run-qsprod
+  - targetId: run-prod
     profiles: [prod]
 ---
 
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
-  name: run-qsstaging
+  name: run-staging
 description: Cloud Run Staging service
 run:
   location: projects/kafe-tabebuya/locations/asia-southeast2
@@ -23,7 +23,7 @@ run:
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
-  name: run-qsprod
+  name: run-prod
 description: Cloud Run production service
 run:
   location: projects/kafe-tabebuya/locations/asia-southeast2

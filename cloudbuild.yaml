@@ -1,16 +1,12 @@
 substitutions:
   _REGION: asia-southeast2
+  _MONGO_URI: ${_MONGO_URI}
+  _NODE_ENV: ${_NODE_ENV}
+  _JWT_SECRET: ${_JWT_SECRET}
+  _EMAIL_HOST: ${_EMAIL_HOST}
+  _EMAIL_USER: ${_EMAIL_USER}
+  _EMAIL_PASS: ${_EMAIL_PASS}
 steps:
-- name: node:latest
-  entrypoint: npm
-  args: ["run", "create-env"]
-  env:
-  - 'MONGO_URI = ${_MONGO_URI}'
-  - 'NODE_ENV = ${_NODE_ENV}'
-  - 'JWT_SECRET = ${_JWT_SECRET}'
-  - 'EMAIL_HOST = ${_EMAIL_HOST}'
-  - 'EMAIL_USER = ${_EMAIL_USER}'
-  - 'EMAIL_PASS = ${_EMAIL_PASS}'
 - name: 'gcr.io/k8s-skaffold/pack'
   entrypoint: 'pack'
   args: ['build',

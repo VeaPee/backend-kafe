@@ -1,5 +1,11 @@
 substitutions:
   _REGION: asia-southeast2
+  MONGO_URI: ${_MONGO_URI}
+  NODE_ENV: ${_NODE_ENV}
+  JWT_SECRET: ${_JWT_SECRET}
+  EMAIL_HOST: ${_EMAIL_HOST}
+  EMAIL_USER: ${_EMAIL_USER}
+  EMAIL_PASS: ${_EMAIL_PASS}
 steps:
 - name: 'gcr.io/k8s-skaffold/pack'
   entrypoint: 'pack'

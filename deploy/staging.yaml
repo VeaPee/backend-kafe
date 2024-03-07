@@ -9,14 +9,14 @@ spec:
       - image: app
         env:
         - name: MONGO_URI
-          value: _MONGO_URI
+          value: ${_MONGO_URI}
         - name: NODE_ENV
-          value: _NODE_ENV
+          value: ${_NODE_ENV}
         - name: JWT_SECRET
-          value: _JWT_SECRET
+          value: ${_JWT_SECRET}
         - name: EMAIL_HOST
-          value: _EMAIL_HOST
+          value: ${_EMAIL_HOST}
         - name: EMAIL_USER
-          value: _EMAIL_USER
+          value: ${_EMAIL_USER}
         - name: EMAIL_PASS
-          value: _EMAIL_PASS
+          value: ${_EMAIL_PASS}

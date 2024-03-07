@@ -1,5 +1,6 @@
 substitutions:
   _REGION: asia-southeast2
+  _RELEASE_TIMESTAMP : $(date '+%Y%m%d-%H%M%S')
 steps:
 - name: 'gcr.io/k8s-skaffold/pack'
   entrypoint: 'pack'
@@ -11,7 +12,7 @@ steps:
   entrypoint: gcloud
   args: 
       [
-      "deploy", "releases", "create",
+      "deploy", "releases", "create", "release-$_RELEASE_TIMESTAMP",
       "--delivery-pipeline", "pipeline-backend",
       "--region", "${_REGION}",
       "--images", "app=${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA"

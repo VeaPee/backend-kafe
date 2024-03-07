@@ -25,5 +25,6 @@ kind: Target
 metadata:
   name: run-prod
 description: Cloud Run production service
+requireApproval: true
 run:
   location: projects/kafe-tabebuya/locations/asia-southeast2

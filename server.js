@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000", "https://staging-frontend-xszujbcblq-et.a.run.app", "https://prod-frontend-xszujbcblq-et.a.run.app"],
     credentials: true,
   })
 );

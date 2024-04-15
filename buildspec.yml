@@ -2,13 +2,13 @@ version: 0.2
 
 env:
   parameter-store:
-    MONGO_URI: "MONGO_URI"
-    NODE_ENV: "NODE_ENV"
-    JWT_SECRET: "JWT_SECRET"
-    EMAIL_HOST: "EMAIL_HOST"
-    EMAIL_USER: "EMAIL_USER"
-    EMAIL_PASS: "EMAIL_PASS"
-    PORT: "PORT"
+    MONGO_URI: /CodeBuild/MONGO_URI
+    NODE_ENV: /CodeBuild/NODE_ENV
+    JWT_SECRET: /CodeBuild/JWT_SECRET
+    EMAIL_HOST: /CodeBuild/EMAIL_HOST
+    EMAIL_USER: /CodeBuild/EMAIL_USER
+    EMAIL_PASS: /CodeBuild/EMAIL_PASS
+    PORT: /CodeBuild/PORT
 phases:
   pre_build:
     commands:

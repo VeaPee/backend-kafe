@@ -18,6 +18,8 @@ phases:
       - printenv > .env
       - echo .env file created
       - echo Entered Install Phase...
+      - echo "Contents of .env file:"
+      - cat .env
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...

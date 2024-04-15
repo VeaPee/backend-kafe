@@ -2,13 +2,13 @@ version: 0.2
 
 env:
   parameter-store:
-    MONGO_URI: /MONGO_URI/
-    NODE_ENV: /NODE_ENV/
-    JWT_SECRET: /JWT_SECRET/
-    EMAIL_HOST: /EMAIL_HOST/
-    EMAIL_USER: /EMAIL_USER/
-    EMAIL_PASS: /EMAIL_PASS/
-    PORT: /PORT/
+    MONGO_URI: /MONGO_URI
+    NODE_ENV: /NODE_ENV
+    JWT_SECRET: /JWT_SECRET
+    EMAIL_HOST: /EMAIL_HOST
+    EMAIL_USER: /EMAIL_USER
+    EMAIL_PASS: /EMAIL_PASS
+    PORT: /PORT
 
 phases:
   pre_build:
@@ -25,6 +25,7 @@ phases:
       - echo EMAIL_USER >> .env
       - echo EMAIL_PASS >> .env
       - echo PORT >> .env
+      - echo .env
 
       - REPOSITORY_URI=654654290307.dkr.ecr.ap-southeast-3.amazonaws.com/backend
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)

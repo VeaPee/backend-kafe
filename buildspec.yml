@@ -30,11 +30,20 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - cp .env Dockerfile /
       - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
+      - |
+        set -e  # Exit on failure
+        printf "JWT_SECRET=%s\n" ${JWT_SECRET} > .env
+        printf "NODE_ENV=%s\n" ${NODE_ENV}  >> .env
+        printf "MONGO_URI=%s\n" ${MONGO_URI}  >> .env
+        printf "EMAIL_HOST=%s\n" ${EMAIL_HOST}  >> .env
+        printf "EMAIL_USER=%s\n" ${EMAIL_USER}  >> .env
+        printf "EMAIL_PASS=%s\n" ${EMAIL_PASS}  >> .env
+        printf "PORT=%s\n" ${PORT}  >> .env
+        echo .env file created
       - echo Build completed on `date`
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:latest

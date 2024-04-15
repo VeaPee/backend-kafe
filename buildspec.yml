@@ -2,13 +2,14 @@ version: 0.2
 
 env:
   parameter-store:
-    MONGO_URI: "MONGO_URI"
-    NODE_ENV: "NODE_ENV"
-    JWT_SECRET: "JWT_SECRET"
-    EMAIL_HOST: "EMAIL_HOST"
-    EMAIL_USER: "EMAIL_USER"
-    EMAIL_PASS: "EMAIL_PASS"
-    PORT: "PORT"
+    MONGO_URI: arn:aws:ssm:ap-southeast-3:654654290307:parameter/MONGO_URI
+    NODE_ENV: arn:aws:ssm:ap-southeast-3:654654290307:parameter/NODE_ENV
+    JWT_SECRET: arn:aws:ssm:ap-southeast-3:654654290307:parameter/JWT_SECRET
+    EMAIL_HOST: arn:aws:ssm:ap-southeast-3:654654290307:parameter/EMAIL_HOST
+    EMAIL_USER: arn:aws:ssm:ap-southeast-3:654654290307:parameter/EMAIL_USER
+    EMAIL_PASS: arn:aws:ssm:ap-southeast-3:654654290307:parameter/EMAIL_PASS
+    PORT: arn:aws:ssm:ap-southeast-3:654654290307:parameter/PORT
+
 
 phases:
   pre_build:

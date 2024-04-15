@@ -43,6 +43,7 @@ phases:
         printf "EMAIL_USER=%s\n" ${EMAIL_USER}  >> .env
         printf "EMAIL_PASS=%s\n" ${EMAIL_PASS}  >> .env
         printf "PORT=%s\n" ${PORT}  >> .env
+        cat .env
         echo .env file created
       - echo Build completed on `date`
       - echo Pushing the Docker images...

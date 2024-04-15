@@ -11,21 +11,6 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 
 const app = express();
-// const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
-
-// const secretmanagerClient = new SecretManagerServiceClient();
-
-// const callAccessSecretVersion = async () => {
-//   // Construct request
-//   const request = {
-//     name: 'projects/720009966636/secrets/MONGO_URI/versions/latest',
-//   };
-
-//   // Run request
-//   const [response] = await secretmanagerClient.accessSecretVersion(request);
-//   const secretValue = response.payload.data.toString();
-//   return secretValue;
-// }
 
 // Middlewares
 app.use(express.json());
@@ -64,20 +49,3 @@ mongoose
     });
   })
   .catch((err) => console.log(err));
-
-// const connectToDatabase = async () => {
-//   try {
-//     const secretValue = await callAccessSecretVersion();
-//     mongoose.connect(secretValue).then(() => {
-//       app.listen(PORT, () => {
-//         console.log(`Server Running on port ${PORT}`);
-//       });
-//     })
-//     .catch((err) => console.log(err));
-//     // console.log('Database Connected and Server Running on port ${PORT}');
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// }
-
-// connectToDatabase();

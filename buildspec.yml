@@ -16,6 +16,7 @@ phases:
         nodejs: 18
     commands:
       - printenv > .env
+      - echo .env file created
       - echo Entered Install Phase...
   pre_build:
     commands:

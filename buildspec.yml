@@ -43,4 +43,6 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"backend","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > backend.json
 artifacts:
-    files: backend.json
+    files:
+      - .env
+      - backend.json

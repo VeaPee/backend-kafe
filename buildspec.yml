@@ -19,7 +19,7 @@ phases:
       - echo Entered Install Phase...
   pre_build:
     commands:
-      - printenv > .env
+      - printenv >> .env
       - echo Logging in to Amazon ECR...
       - aws --version
       - aws ecr get-login-password --region ap-southeast-3 | docker login --username AWS --password-stdin 654654290307.dkr.ecr.ap-southeast-3.amazonaws.com

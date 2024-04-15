@@ -11,23 +11,17 @@ env:
     PORT: /PORT
 
 phases:
+  install:
+    runtime-versions:
+        nodejs: 18
+    commands:
+      - printenv
+      - echo Entered Install Phase...
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
       - aws ecr get-login-password --region ap-southeast-3 | docker login --username AWS --password-stdin 654654290307.dkr.ecr.ap-southeast-3.amazonaws.com
-      
-      # export the env variables
-      - printenv > .env
-      - echo MONGO_URI=$MONGO_URI >> .env
-      - echo NODE_ENV=$NODE_ENV >> .env
-      - echo JWT_SECRET=$JWT_SECRET >> .env
-      - echo EMAIL_HOST=$EMAIL_HOST >> .env
-      - echo EMAIL_USER=$EMAIL_USER >> .env
-      - echo EMAIL_PASS=$EMAIL_PASS >> .env
-      - echo PORT=$PORT >> .env
-      - echo .env
-
       - REPOSITORY_URI=654654290307.dkr.ecr.ap-southeast-3.amazonaws.com/backend
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}

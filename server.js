@@ -29,7 +29,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // Routes Middleware
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
-app.use("/api/contactus", contactRoute);
+app.use("/api/contacts", contactRoute);
 
 // Routes
 app.get("/", (req, res) => {

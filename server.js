@@ -33,7 +33,10 @@ app.use("/api/contacts", contactRoute);
 
 // Routes
 app.get("/", (req, res) => {
-  res.send("Home Page");
+  res.status(400).json({
+    status: "Error",
+    message: `Page Not Found`,
+  });
 });
 
 // Error Middleware

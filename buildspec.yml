@@ -2,36 +2,27 @@ version: 0.2
 
 env:
   parameter-store:
-    MONGO_URI: /MONGO_URI
-    NODE_ENV: /NODE_ENV
-    JWT_SECRET: /JWT_SECRET
-    EMAIL_HOST: /EMAIL_HOST
-    EMAIL_USER: /EMAIL_USER
-    EMAIL_PASS: /EMAIL_PASS
-    PORT: /PORT
-
+    DOCKER_REGISTRY_USERNAME: /username
+    DOCKER_REGISTRY_PASSWORD: /password
+    DOCKER_REGISTRY_URL: /url
 phases:
+  install:
+    runtime-versions:
+      nodejs: latest
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - aws --version
-      - aws ecr get-login-password --region ap-southeast-3 | docker login --username AWS --password-stdin 654654290307.dkr.ecr.ap-southeast-3.amazonaws.com
-      - REPOSITORY_URI=654654290307.dkr.ecr.ap-southeast-3.amazonaws.com/backend
-      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - echo "Installing dependencies..."
+      - pip install -r requirements.txt
   build:
     commands:
-      - echo Build started on `date`
-      - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - echo "Running tests..."
+      - echo "Building Docker image..."
+      - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"
+      - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/backend-kafe:latest" .
+      - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/backend-kafe:latest"
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - echo Writing image definitions file...
-      - printf '[{"name":"backend","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > backend.json
+      - echo "Build completed successfully!"
 artifacts:
-    files: backend.json
+  files:
+    - '**/*'

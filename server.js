@@ -33,10 +33,7 @@ app.use("/api/contacts", contactRoute);
 
 // Routes
 app.get("/", (req, res) => {
-  res.status(400).json({
-    status: "Error",
-    message: `Page Not Found`,
-  });
+  res.status(200).send("Hello World");
 });
 
 // Error Middleware
@@ -52,3 +49,5 @@ mongoose
     });
   })
   .catch((err) => console.log(err));
+
+module.exports = app;

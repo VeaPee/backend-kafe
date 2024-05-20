@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "backend": "nodemon server.js",
+    "test": "jest --runInBand --detectOpenHandles --forceExit app.test.js",
     "create-env": "printenv > .env"
   },
   "keywords": [],
@@ -25,6 +26,7 @@
     "mongoose": "^8.1.3",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.7.8",
-    "nodemon": "^3.0.3"
+    "nodemon": "^3.0.3",
+    "supertest": "^7.0.0"
   }
 }

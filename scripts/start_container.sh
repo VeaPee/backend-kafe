@@ -4,13 +4,13 @@ set -e
 # Pull the Docker image from Docker Hub
 docker pull veapee/backend-kafe:latest
 
-MONGO_URI=$(aws ssm get-parameters --region ap-southeast-2 --names MONGO_URI --with-decryption --query Parameters[0].Value)
-NODE_ENV=$(aws ssm get-parameters --region ap-southeast-2 --names NODE_ENV --with-decryption --query Parameters[0].Value)
-JWT_SECRET=$(aws ssm get-parameters --region ap-southeast-2 --names JWT_SECRET --with-decryption --query Parameters[0].Value)
-EMAIL_HOST=$(aws ssm get-parameters --region ap-southeast-2 --names EMAIL_HOST --with-decryption --query Parameters[0].Value)
-EMAIL_USER=$(aws ssm get-parameters --region ap-southeast-2 --names EMAIL_USER --with-decryption --query Parameters[0].Value)
-EMAIL_PASS=$(aws ssm get-parameters --region ap-southeast-2 --names EMAIL_PASS --with-decryption --query Parameters[0].Value)
-PORT=$(aws ssm get-parameters --region ap-southeast-2 --names PORT --with-decryption --query Parameters[0].Value)
+MONGO_URI=$(/usr/local/bin/aws ssm get-parameter --region ap-southeast-2 --name MONGO_URI --with-decryption --query "Parameter.Value" --output text)
+NODE_ENV=$(/usr/local/bin/aws ssm get-parameter --region ap-southeast-2 --name NODE_ENV --with-decryption --query "Parameter.Value" --output text)
+JWT_SECRET=$(/usr/local/bin/aws ssm get-parameter --region ap-southeast-2 --name JWT_SECRET --with-decryption --query "Parameter.Value" --output text)
+EMAIL_HOST=$(/usr/local/bin/aws ssm get-parameter --region ap-southeast-2 --name EMAIL_HOST --with-decryption --query "Parameter.Value" --output text)
+EMAIL_USER=$(/usr/local/bin/aws ssm get-parameter --region ap-southeast-2 --name EMAIL_USER --with-decryption --query "Parameter.Value" --output text)
+EMAIL_PASS=$(/usr/local/bin/aws ssm get-parameter --region ap-southeast-2 --name EMAIL_PASS --with-decryption --query "Parameter.Value" --output text)
+PORT=$(/usr/local/bin/aws ssm get-parameter --region ap-southeast-2 --name PORT --with-decryption --query "Parameter.Value" --output text)
 
 # Run the Docker image as a container
 docker run -dit -p 80:80 \

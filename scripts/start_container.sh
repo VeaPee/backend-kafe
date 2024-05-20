@@ -27,7 +27,7 @@ PORT=$(aws ssm get-parameters --region ap-southeast-2 --names PORT --with-decryp
 echo "PORT: $PORT"
 
 # Run the Docker image as a container
-docker run -dit -p 8080:80 \
+docker run -dit -p 80:80 \
   -e MONGO_URI="$MONGO_URI" \
   -e NODE_ENV="$NODE_ENV" \
   -e JWT_SECRET="$JWT_SECRET" \

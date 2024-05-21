@@ -10,8 +10,8 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'ff3ee07d-3079-4ece-a10f-6e020a22f8d3'
-  imageRepository: 'pipelinebackendkafe'
+  dockerRegistryServiceConnection: '750a8142-fa6a-45f3-abe2-5c1a8a55ee19'
+  imageRepository: 'veapeebackendkafe'
   containerRegistry: 'pipelinebackend.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'

@@ -40,6 +40,6 @@ stages:
     - task: AzureWebAppContainer@1
       displayName: 'Azure Web App on Container Deploy'
       inputs:
-        azureSubscription: 90c37dc6-eeb8-4d13-9365-d2c69c3e7bf6
+        azureSubscription: Azure for Students
         appName: BackendAppKafe
         containers: $(containerRegistry)/$(imageRepository):$(tag)

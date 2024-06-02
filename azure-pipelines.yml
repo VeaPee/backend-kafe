@@ -19,14 +19,6 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
-  MONGO_URI: '$(MONGO_URI)'
-  NODE_ENV: '$(NODE_ENV)'
-  JWT_SECRET: '$(JWT_SECRET)'
-  EMAIL_HOST: '$(EMAIL_HOST)'
-  EMAIL_USER: '$(EMAIL_USER)'
-  EMAIL_PASS: '$(EMAIL_PASS)'
-  PORT: '$(PORT)'
-
 stages:
 - stage: Build
   displayName: Build and push stage

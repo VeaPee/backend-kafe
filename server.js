@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://staging-frontend-xszujbcblq-et.a.run.app", "https://prod-frontend-xszujbcblq-et.a.run.app"],
+    origin: ["http://localhost:3000", "https://staging-frontend-xszujbcblq-et.a.run.app", "https://prod-frontend-xszujbcblq-et.a.run.app", "frontendappcafe.azurewebsites.net"],
     credentials: true,
   })
 );
@@ -33,7 +33,7 @@ app.use("/api/contacts", contactRoute);
 
 // Routes
 app.get("/", (req, res) => {
-  res.status(200).send("Hello World");
+  res.status(200).send("Backend Aplikasi Kafe Tabebuya");
 });
 
 // Error Middleware

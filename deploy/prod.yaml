@@ -38,3 +38,18 @@ spec:
               secretKeyRef:
                 key: latest
                 name: EMAIL_PASS
+          - name: CLOUDINARY_NAME
+            valueFrom:
+              secretKeyRef:
+                key: latest
+                name: CLOUDINARY_NAME
+          - name: CLOUDINARY_API_KEY
+            valueFrom:
+              secretKeyRef:
+                key: latest
+                name: CLOUDINARY_API_KEY
+          - name: CLOUDINARY_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: latest
+                name: CLOUDINARY_SECRET

@@ -44,10 +44,8 @@ const productSchema = mongoose.Schema(
       trim: true,
     },
     image: {
-      type: String,
-      required: true,
-      default: "https://storage.googleapis.com/tabebuya-cafe/Placeholder.png",
-      trim: true,
+      type: Object,
+      default: {},
     },
   },
   {

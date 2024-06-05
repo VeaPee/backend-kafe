@@ -26,6 +26,15 @@ echo "EMAIL_PASS: $EMAIL_PASS"
 PORT=$(aws ssm get-parameters --region ap-southeast-2 --names PORT --with-decryption --query Parameters[0].Value --output text)
 echo "PORT: $PORT"
 
+CLOUDINARY_NAME=$(aws ssm get-parameters --region ap-southeast-2 --names CLOUDINARY_NAME --with-decryption --query Parameters[0].Value --output text)
+echo "CLOUDINARY_NAME: $CLOUDINARY_NAME"
+
+CLOUDINARY_API_KEY=$(aws ssm get-parameters --region ap-southeast-2 --names CLOUDINARY_API_KEY --with-decryption --query Parameters[0].Value --output text)
+echo "CLOUDINARY_API_KEY: $CLOUDINARY_API_KEY"
+
+CLOUDINARY_SECRET=$(aws ssm get-parameters --region ap-southeast-2 --names CLOUDINARY_SECRET --with-decryption --query Parameters[0].Value --output text)
+echo "CLOUDINARY_SECRET: $CLOUDINARY_SECRET"
+
 # Run the Docker image as a container
 docker run -dit -p 80:80 \
   -e MONGO_URI="$MONGO_URI" \
@@ -35,4 +44,7 @@ docker run -dit -p 80:80 \
   -e EMAIL_USER="$EMAIL_USER" \
   -e EMAIL_PASS="$EMAIL_PASS" \
   -e PORT="$PORT" \
+  -e PORT="$CLOUDINARY_NAME" \
+  -e PORT="$CLOUDINARY_API_KEY" \
+  -e PORT="$CLOUDINARY_SECRET" \
   veapee/backend-kafe

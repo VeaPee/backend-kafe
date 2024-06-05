@@ -17,7 +17,7 @@ CLOUDINARY_API_KEY=$(aws ssm get-parameters --region ap-southeast-2 --names CLOU
 CLOUDINARY_SECRET=$(aws ssm get-parameters --region ap-southeast-2 --names CLOUDINARY_SECRET --with-decryption --query Parameters[0].Value --output text)
 
 # Run the Docker image as a container
-docker run -dit -p 80:80 \
+docker run -dit -p 80:5000 \
   -e MONGO_URI="$MONGO_URI" \
   -e NODE_ENV="$NODE_ENV" \
   -e JWT_SECRET="$JWT_SECRET" \

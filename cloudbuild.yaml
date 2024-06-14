@@ -8,12 +8,12 @@ steps:
         '--publish', '${_REGION}-docker.pkg.dev/${PROJECT_ID}/containers-repo/app:$COMMIT_SHA']
   id: backend
 
-- name: 'node:14'
+- name: "gcr.io/cloud-builders/npm"
   id: install-dependencies
   entrypoint: npm
   args: ['install']
 
-- name: 'node:14'
+- name: "gcr.io/cloud-builders/npm"
   id: run-tests
   entrypoint: npm
   args: ["run", "test"]

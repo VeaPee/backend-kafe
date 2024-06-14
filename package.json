@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "backend": "nodemon server.js",
-    "test": "jest --runInBand --detectOpenHandles ./app.test.js --forceExit",
+    "test": "jest --runInBand --detectOpenHandles --forceExit",
     "create-env": "printenv > .env"
   },
   "keywords": [],

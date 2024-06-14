@@ -10,6 +10,10 @@ const errorHandler = require("./middleWare/errorMiddleware");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 
+if (!TextDecoderFatal) {
+  TextDecoderFatal = new TextDecoder('utf8', { fatal: true });
+}
+
 const app = express();
 
 // Middlewares

@@ -9,6 +9,11 @@ steps:
   id: backend
 
 - name: "gcr.io/cloud-builders/npm"
+  id: install-dependencies
+  entrypoint: npm
+  args: ['install']
+
+- name: "gcr.io/cloud-builders/npm"
   id: run-tests
   entrypoint: npm
   args: ["run", "test"]

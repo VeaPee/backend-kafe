@@ -16,7 +16,7 @@ steps:
 - name: 'node:14'
   id: run-tests
   entrypoint: npm
-  args: ['test', 'app.test.js']
+  args: ["run", "test"]
 
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
   entrypoint: gcloud

@@ -1,7 +1,7 @@
 substitutions:
   _REGION: asia-southeast2
 steps:
-- name: 'gcr.io/buildpacks/builder'
+- name: 'gcr.io/k8s-skaffold/pack'
   entrypoint: 'pack'
   args: ['build',
         '--builder=gcr.io/buildpacks/builder',

@@ -7,8 +7,8 @@ if [ "$(docker ps -q)" ]; then
     echo "Stopping all running Docker containers..."
     docker stop $(docker ps -q)
 
-    # # Optionally, you can also remove all stopped containers
-    # docker rm $(docker ps -a -q)
+    # # Optionally, remove all stopped containers
+    docker rm $(docker ps -a -q)
     
     echo "All Docker containers have been stopped."
 else

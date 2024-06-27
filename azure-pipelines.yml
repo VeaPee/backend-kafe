@@ -21,15 +21,15 @@ variables:
 
 stages:
 - stage: Build
-  displayName: Build and push an image to container registry
+  displayName: Build and Testing and push an image to container registry
   jobs:
   - job: Build
-    displayName: Build
+    displayName: Build and Testing
     pool:
       vmImage: $(vmImageName)
     steps:
     - task: Docker@2
-      displayName: Build and push an image to container registry
+      displayName: Build and Testing and push an image to container registry
       inputs:
         command: buildAndPush
         repository: $(imageRepository)
@@ -37,20 +37,6 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-
-- stage: Test
-  displayName: Test
-  jobs:
-  - job: Test
-    displayName: Test
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-    - script: |
-        npm install
-        npm run test
-      displayName: 'Run Tests'
-      workingDirectory: '$(Build.SourcesDirectory)'
 
 - stage: Deploy
   displayName: Deploy Stage

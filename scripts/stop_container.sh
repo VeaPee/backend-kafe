@@ -11,10 +11,14 @@ if [ "$(docker ps -q)" ]; then
     docker rm $(docker ps -a -q)
     
     echo "All Docker containers have been stopped."
+
+    # Delete all images
+    docker rmi $(docker images -a -q)
+    echo "All Docker images have been deleted."
 else
     echo "No running Docker containers found."
 fi
 
-# Delete all images (including untagged ones)
+# Delete all images
 docker rmi $(docker images -a -q)
 echo "All Docker images have been deleted."

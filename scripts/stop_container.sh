@@ -10,7 +10,7 @@ if [ "$(docker ps -q)" ]; then
     # # # Optionally, remove all stopped containers
     # docker rm $(docker ps -a -q)
     
-    # echo "All Docker containers have been stopped."
+    echo "All Docker containers have been stopped."
 
     # # Delete all images
     # docker rmi $(docker images -a -q)

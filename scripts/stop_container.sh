@@ -18,7 +18,3 @@ if [ "$(docker ps -q)" ]; then
 else
     echo "No running Docker containers found."
 fi
-
-# Delete all images
-docker rmi $(docker images -a -q)
-echo "All Docker images have been deleted."
